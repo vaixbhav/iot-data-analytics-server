@@ -1,0 +1,42 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  IoT
+
+  Sample SAM Template for IoT
+
+Globals:
+  Function:
+    Timeout: 20
+    MemorySize: 512
+    LoggingConfig:
+      LogFormat: JSON
+
+Resources:
+  MyApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: prod
+
+  mp3:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: mp3
+      Handler: cpen221.mp3.lambda.Function::handleRequest
+      Runtime: java17
+      Architectures:
+        - x86_64
+      MemorySize: 512
+      Environment:
+        Variables:
+          POWERTOOLS_LOG_LEVEL: INFO
+          POWERTOOLS_LOGGER_LOG_EVENT: true
+          PARAM1: VALUE
+      Events:
+        MyApiEvent:
+          Type: Api
+          Properties:
+            Path: /lmbdafn
+            Method: get
+            RestApiId:
+              Ref: MyApi  # Reference to the API Gateway resource
