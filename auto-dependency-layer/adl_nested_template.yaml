@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS SAM CLI Nested Stack for Auto Dependency Layer Creation
+Metadata:
+  SamCliInfo: 1.104.0
+  key: AWS SAM CLI sync command
+Outputs:
+  mp328dafd4aDepLayer:
+    Value:
+      Ref: mp328dafd4aDepLayer
+Resources:
+  mp328dafd4aDepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - java17
+      ContentUri: C:\Users\aniru\IoT\.aws-sam\auto-dependency-layer\mp328dafd4aDepLayer
+      Description: Auto created layer for dependencies of function mp3
+      LayerName: IoT-Prediction-O0ed41238-mp328dafd4a-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+Transform: AWS::Serverless-2016-10-31
